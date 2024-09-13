@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
-import { ComplexityPlugin } from './complexity.plugin';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { GraphQLLoggerInterceptor } from './common/interceptors/graphql-logger.interceptor';
 
 @Module({
   imports: [
@@ -17,6 +16,12 @@ import { ComplexityPlugin } from './complexity.plugin';
     UsersModule,
     PostsModule,
   ],
-  providers: [ComplexityPlugin]
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: GraphQLLoggerInterceptor,
+    },
+  ],
 })
+
 export class AppModule {}
