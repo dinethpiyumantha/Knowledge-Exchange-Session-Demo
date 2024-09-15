@@ -12,12 +12,15 @@ export class User {
   @Field(() => String)
   email: string;
 
+  // @Field(() => String)
+  // password: string;
+
   @Field(() => String)
   createdAt: string;
 
   @Field(() => String)
   updatedAt: string;
 
-  @Field(() => [Post], { defaultValue: []})
-  posts?: Post[];
+  @Field(() => [Post], { nullable: 'itemsAndList' })
+  posts?: (Post | null)[];
 }

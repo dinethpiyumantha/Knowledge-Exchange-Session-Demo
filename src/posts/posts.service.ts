@@ -16,9 +16,9 @@ export class PostsService {
         slug: generateUniqueSlug(createPostInput.title),
         user: {
           connect: {
-            id: createPostInput.userId
-          }
-        }
+            id: createPostInput.userId,
+          },
+        },
       },
     });
   }
@@ -26,19 +26,19 @@ export class PostsService {
   findAll() {
     return this.prisma.post.findMany({
       include: {
-        user: true
-      }
+        user: true,
+      },
     });
   }
 
   findOne(id: number) {
     return this.prisma.post.findUnique({
       where: {
-        id
+        id,
       },
       include: {
-        user: true
-      }
+        user: true,
+      },
     });
   }
 
@@ -47,19 +47,19 @@ export class PostsService {
       data: {
         content: updatePostInput.content,
         title: updatePostInput.title,
-        slug: generateUniqueSlug(updatePostInput.title)
+        slug: generateUniqueSlug(updatePostInput.title),
       },
       where: {
-        id
-      }
+        id,
+      },
     });
   }
 
   remove(id: number) {
     return this.prisma.post.delete({
       where: {
-        id
-      }
+        id,
+      },
     });
   }
 }

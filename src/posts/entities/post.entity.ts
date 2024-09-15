@@ -15,8 +15,8 @@ export class Post {
   @Field(() => String)
   content: string;
 
-  @Field(() => User)
-  user: User;
+  @Field(() => User, { nullable: true })
+  user?: User | null;
 
   @Field(() => String)
   createdAt: String;
