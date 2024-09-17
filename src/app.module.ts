@@ -23,7 +23,8 @@ import { AuthModule } from './auth/auth.module';
             ...extensions,
             stacktrace: undefined,
           },
-        }}
+        }
+      }
     }),
     UsersModule,
     PostsModule,
